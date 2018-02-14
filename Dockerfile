@@ -9,5 +9,9 @@ RUN apk --update add libmcrypt-dev \
     docker-php-ext-install pdo_mysql && \
     docker-php-ext-install gd && \
     docker-php-ext-install opcache && \
-    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \ 
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \
     composer global require hirak/prestissimo
+
+RUN apk add --update --no-cache autoconf g++ imagemagick-dev libtool make pcre-dev \
+    && pecl install imagick \
+    && docker-php-ext-enable imagick
