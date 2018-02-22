@@ -3,6 +3,7 @@ MAINTAINER arsaga
 
 RUN apk --update add libmcrypt-dev \
     libpng-dev \
+    nasm \
     && rm -rf /var/cache/apk/* && \
     docker-php-ext-install mbstring && \
     docker-php-ext-install mcrypt && \
