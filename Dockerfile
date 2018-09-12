@@ -15,3 +15,7 @@ RUN apk --update add libmcrypt-dev \
 RUN apk add --update --no-cache autoconf g++ imagemagick-dev libtool make pcre-dev \
     && pecl install imagick \
     && docker-php-ext-enable imagick
+
+#gulp
+RUN apk --no-cache add nodejs nodejs-npm
+RUN npm install -G gulp
