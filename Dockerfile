@@ -3,14 +3,17 @@ MAINTAINER arsaga
 RUN apk --update add zlib-dev \
     libmcrypt-dev \
     libpng-dev \
+    libjpeg-turbo-dev \
     libzip-dev \
     && rm -rf /var/cache/apk/* && \
     docker-php-ext-install mbstring && \
     docker-php-ext-install pdo_mysql && \
     docker-php-ext-install opcache && \
     docker-php-ext-install zip && \
+    docker-php-ext-configure gd --with-jpeg-dir=/usr/local/etc/php && \
     docker-php-ext-install gd && \
-    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \ 
+    docker-php-ext-enable gd  && \
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \
     composer global require hirak/prestissimo && \
     apk add --update --no-cache autoconf g++ imagemagick-dev libtool make pcre-dev \
     && pecl install imagick \
